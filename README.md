@@ -4,18 +4,18 @@ Project Overview:
 	For this project we were tasked with finishing the implementation of the interpreter for the language “x”. We were given this project as a partially completed skeleton, but there was still ample work to do. We were responsible with implementing four classes: ByteCodeLoader (BCL), Program, RuntimeStack (RTS), and VirtualMachine (VM). On top of this we also had to implement fifteen byte code classes: halt, pop, false branch, go to, store, load, lit, args, call, return, bop, read, write, dump, and label; all of which are extensions of the abstract class ByteCode. BCL is responsible for taking in the file name of a “<filename>.x.cod” file as a command line argument, parsing through this file creating instances of each byte code in the file, and adding these byte code instances to the Program array list. The CodeTable, which contains an instance of a hash map, allows us to create these instances of each byte code on the fly. At the end of BCL, the “resolveAddrs” method in Program is call with the program array list as a parameter. This method then traverses through the Program array list and extracts the integer representation of the label addresses, and passes this information to byte code instances that will need this address for future execution (FalseBranchCode, GotoCode, and CallCode will need this). Once the addresses of the Program array list are all resolved, an instance of VM is created with this Program array list. The instance of VM then calls upon it’s “executeProgram” method which will call upon the execute method of every byte code in program (the execute that is invoked is dependent on the type of byte code instance that is calling upon it). Although each of the byte code instances will need to interact with the RTS when executing the execute method, we cannot call upon these RTS methods directly because doing so will break encapsulation. To get around this, VM contains a set of methods whose sole purpose is to pass calls from bytecode execute methods to the RTS class. 
 
 
-#Compilation/Execution Instructions:
+# Compilation/Execution Instructions:
 
 	This project was built in IntelliJ IDEA. Compile and execute this program as you normally would, being sure to pass the file name of the program you would like to test in the format: <filename>.x.cod, as a command line argument. The “Interpreter” class is the entry point to this project.
 
 
 
-#Assumptions:
+# Assumptions:
 
 	One assumption that is made throughout this project is that the file that is passed to the Interpreter is a valid (syntactically, logically) .x.cod file with no errors.
   
 
-#Implementation Details:
+# Implementation Details:
 
 BCL:
 
@@ -40,7 +40,7 @@ The abstract class ByteCode (BC) allows for extendibility the byte code class in
 
 
 
-#Results and Conclusion:
+# Results and Conclusion:
 
 	This project, being one of the larger programs I have worked on in my career as a Computer Science major, provided many new insights into “programming in the large”. Up until this point, most projects that I have worked on are solely based on logical reasoning (solving programming problems, in contrast to developing), so being able to work on an assignment that required me to think deeper into programming design really helped me grow as an intermediate programmer. One example of this is the requirement of not breaking encapsulation; before this project this is something I honestly never thought of, but I can now see the reasoning behind doing so. As programmer’s we need to not think in terms of throwing code at the wall and hoping it works, but rather think in terms of planning and designing beforehand in order to avoid running in circles. The goal is to create code that is reusable and easily updatable.
 
